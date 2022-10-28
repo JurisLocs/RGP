@@ -12,75 +12,57 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('welcome',[
+        return view('layouts.index',[
             'users'=> $users
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        return view('layouts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $newPost = User::create([
+            'name' => $request->name,
+            'id_number' => $request->id_number,
+            'type' => $request->type,
+            'user_id' => 1
+        ]);
+
+        return redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+
+    public function show(User $user)
     {
-        //
+        return view('layouts.show', [
+            'user' => $user,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('layouts.edit',[
+            'user' => $user
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update([
+            'name' => $request->name,
+            'id_number' => $request->id_number,
+            'type' => $request->type
+        ]);
+        return redirect('/');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function destroy(User $user )
     {
-        //
+        $user->delete();
+        return redirect('/');
     }
 }

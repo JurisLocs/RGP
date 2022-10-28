@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/create', function () {
-    return view('layouts.create');
-});
+Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('/{user}', [\App\Http\Controllers\UserController::class, 'show']);
 
-Route::get('test', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('/create/user',[\App\Http\Controllers\UserController::class, 'create']);
+Route::post('/create/user',[\App\Http\Controllers\UserController::class, 'store']);
+Route::get('/{user}/edit',[\App\Http\Controllers\UserController::class, 'edit']);
+Route::put('/{user}/edit',[\App\Http\Controllers\UserController::class, 'update']);
+Route::delete('/{user}',[\App\Http\Controllers\UserController::class, 'destroy']);

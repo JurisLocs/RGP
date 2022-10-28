@@ -22,7 +22,12 @@
                             <div class="control-group col-12 mt-2">
                                 <label for="id_number">Personas kods vai reģistrācijas numurs</label>
                                 <input id="id_number" class="form-control" name="id_number" placeholder=""
-                                          rows="" required></input>
+                                          required></input>
+                            </div>
+                            <div class="control-group col-12 mt-2">
+                                <label for="type">Fiziska/Juridiska persona</label>
+                                <input id="type" class="form-control" name="type" placeholder=""
+                                        required></input>
                             </div>
                         </div>
                         <div class="row mt-2">
